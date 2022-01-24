@@ -1,6 +1,6 @@
 <script lang="ts">
   import Modal from './Modal.svelte';
-  import SearchResults, { results } from './SearchResults.svelte';
+  import SearchResults from './SearchResults.svelte';
   import { searchIsOpen } from '$lib/stores/search';
   import Fuse from 'fuse.js';
   let index;
@@ -36,7 +36,6 @@
       fuse = new Fuse(index, fuseOptions);
     }
     const results = fuse.search(selectedQuery);
-    console.log(results)
     hits = results;
   }
   function handleShortcut(event) {
@@ -50,8 +49,6 @@
       $searchIsOpen = false;
     }
   }
-
-
 </script>
 
 <svelte:window on:keydown={handleShortcut} />
